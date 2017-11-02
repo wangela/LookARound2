@@ -154,7 +154,7 @@ extension AnnotationManager: ARSCNViewDelegate {
         var nodePosition = node.position
         let (min, max) = node.boundingBox
         let nodeHeight = max.y - min.y
-        nodePosition.y = nodeHeight + 2.0
+        nodePosition.y = nodeHeight + 4.0
         
         calloutNode.position = nodePosition
         
@@ -178,8 +178,11 @@ extension AnnotationManager: ARSCNViewDelegate {
         }
         let title = SCNText(string: calloutString, extrusionDepth: 0)
         title.font = UIFont.systemFont(ofSize: 2.5, weight: .bold)
+        
+        let plane = CalloutPlane(annotation: annotation)
+        // plane.setAnnotation(with: annotation)
 
-        let calloutNode = SCNNode(geometry: title)
+        let calloutNode = SCNNode(geometry: plane)
         var nodePosition = node.position
         let (cmin, cmax) = calloutNode.boundingBox
         let (min, max) = node.boundingBox
